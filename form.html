@@ -4,18 +4,106 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Age Checker - Voting Eligibility</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    /* Container to center the form */
+    .container {
+      background-color: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    
+    /* Styling for form elements */
+    label {
+      font-size: 16px;
+      margin-bottom: 8px;
+      display: block;
+      color: #333;
+    }
+    
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    input:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    button:hover {
+      background-color: #45a049;
+    }
+    
+    /* Styling for the eligibility message */
+    p {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #333;
+    }
+    
+    /* Success message style */
+    .eligible {
+      color: green;
+    }
+    
+    /* Error message style */
+    .not-eligible {
+      color: red;
+    }
+  </style>
 </head>
 <body>
-  <h1>Age Checker</h1>
-  
-  <!-- Form to input birth year -->
-  <form id="ageForm">
-    <label for="birthYear">Enter your birth year:</label>
-    <input type="number" id="birthYear" name="birthYear" required>
-    <button type="submit">Check Eligibility</button>
-  </form>
-  
-  <p id="eligibility"></p>  <!-- This will display the eligibility message -->
+
+  <!-- Container for the form -->
+  <div class="container">
+    <h1>Age Checker</h1>
+    
+    <!-- Form to input birth year -->
+    <form id="ageForm">
+      <label for="birthYear">Enter your birth year:</label>
+      <input type="number" id="birthYear" name="birthYear" required placeholder="Enter your birth year">
+      <button type="submit">Check Eligibility</button>
+    </form>
+    
+    <p id="eligibility"></p>  <!-- This will display the eligibility message -->
+  </div>
 
   <script>
     // Select form and message paragraph elements
@@ -39,13 +127,16 @@
       let message;
       if (age >= 18) {
         message = "You are " + age + " years old. You are eligible to vote!";
+        eligibilityMessage.className = 'eligible';  // Apply success class
       } else {
         message = "You are " + age + " years old. You are not eligible to vote yet.";
+        eligibilityMessage.className = 'not-eligible';  // Apply error class
       }
       
       // Display the eligibility message
       eligibilityMessage.innerText = message;
     });
   </script>
+
 </body>
 </html>
