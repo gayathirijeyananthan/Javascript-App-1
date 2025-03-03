@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salary Calculator - Bonus Eligibility</title>
+  <title>Age-Based Discount</title>
   <style>
-    /* Basic styling */
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #f4f4f9;
       display: flex;
       justify-content: center;
@@ -15,8 +14,6 @@
       height: 100vh;
       margin: 0;
     }
-
-    /* Container for form */
     .container {
       background-color: white;
       padding: 20px 30px;
@@ -26,20 +23,14 @@
       max-width: 400px;
       text-align: center;
     }
-
     h1 {
       color: #333;
-      margin-bottom: 20px;
     }
-
-    /* Styling for form elements */
     label {
       font-size: 16px;
       margin-bottom: 8px;
       display: block;
-      color: #333;
     }
-
     input {
       width: 100%;
       padding: 10px;
@@ -47,14 +38,7 @@
       margin-bottom: 15px;
       border: 2px solid #ccc;
       border-radius: 4px;
-      box-sizing: border-box;
     }
-
-    input:focus {
-      border-color: #4CAF50;
-      outline: none;
-    }
-
     button {
       background-color: #4CAF50;
       color: white;
@@ -65,78 +49,59 @@
       cursor: pointer;
       width: 100%;
     }
-
     button:hover {
       background-color: #45a049;
     }
-
-    /* Message styles */
     p {
       font-size: 18px;
       font-weight: bold;
       margin-top: 20px;
-      color: #333;
     }
-
-    /* Success message style */
-    .bonus {
+    .eligible {
       color: green;
     }
-
-    /* No bonus message style */
-    .no-bonus {
+    .not-eligible {
       color: red;
     }
   </style>
 </head>
 <body>
 
-  <!-- Container for the form -->
   <div class="container">
-    <h1>Salary Calculator</h1>
-    
-    <!-- Form to input hours worked and hourly wage -->
-    <form id="salaryForm">
-      <label for="hoursWorked">Enter hours worked:</label>
-      <input type="number" id="hoursWorked" name="hoursWorked" required placeholder="Enter hours worked" min="0">
+    <h1>Check Your Discount</h1>
+
+    <form id="discountForm">
+      <label for="name">Enter your name:</label>
+      <input type="text" id="name" name="name" required placeholder="Your Name">
       
-      <label for="hourlyWage">Enter hourly wage:</label>
-      <input type="number" id="hourlyWage" name="hourlyWage" required placeholder="Enter hourly wage" min="0">
+      <label for="age">Enter your age:</label>
+      <input type="number" id="age" name="age" required placeholder="Your Age">
       
-      <button type="submit">Calculate Salary</button>
+      <button type="submit">Check Discount</button>
     </form>
-    
-    <p id="salaryMessage"></p>  <!-- This will display the salary and bonus eligibility message -->
+
+    <p id="discountMessage"></p>
   </div>
 
   <script>
-    // Select form and message paragraph elements
-    const salaryForm = document.getElementById('salaryForm');
-    const salaryMessage = document.getElementById('salaryMessage');
+    const discountForm = document.getElementById('discountForm');
+    const discountMessage = document.getElementById('discountMessage');
 
-    // Event listener for form submission
-    salaryForm.addEventListener('submit', function(event) {
+    discountForm.addEventListener('submit', function(event) {
       event.preventDefault();  // Prevent the form from reloading the page
 
-      // Get the user's input (hours worked and hourly wage) from the form
-      const hoursWorked = parseFloat(document.getElementById('hoursWorked').value);
-      const hourlyWage = parseFloat(document.getElementById('hourlyWage').value);
+      // Get user inputs
+      const name = document.getElementById('name').value;
+      const age = parseInt(document.getElementById('age').value);
 
-      // Calculate the total salary
-      const totalSalary = hoursWorked * hourlyWage;
-      
-      // Check bonus eligibility (if salary is greater than or equal to 1000)
-      let message;
-      if (totalSalary >= 1000) {
-        message = "Your total salary is $" + totalSalary.toFixed(2) + ". Congratulations! You qualify for a bonus!";
-        salaryMessage.className = 'bonus';  // Apply bonus class
+      // Check if the user is eligible for a discount (18 or older)
+      if (age >= 18) {
+        discountMessage.textContent = `${name}, you are eligible for a discount!`;
+        discountMessage.className = 'eligible'; // Green message
       } else {
-        message = "Your total salary is $" + totalSalary.toFixed(2) + ". You do not qualify for a bonus.";
-        salaryMessage.className = 'no-bonus';  // Apply no bonus class
+        discountMessage.textContent = `${name}, you are not eligible for a discount.`;
+        discountMessage.className = 'not-eligible'; // Red message
       }
-      
-      // Display the salary and bonus eligibility message
-      salaryMessage.innerText = message;
     });
   </script>
 
