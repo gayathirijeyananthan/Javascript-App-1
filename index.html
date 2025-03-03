@@ -10,15 +10,21 @@
   <p id="greeting"></p>
 
   <script>
-    // Declare variables
-    let name = "Alice";  // Store user's name
-    let age = 25;        // Store user's age
+//     // Declare variables
+//     let name = "Alice";  // Store user's name
+//     let age = 25;        // Store user's age
 
-    // Use the variables in a greeting message
-    let greetingMessage = "Hello, my name is " + name + " and I am " + age + " years old.";
+//     // Use the variables in a greeting message
+//     let greetingMessage = "Hello, my name is " + name + " and I am " + age + " years old.";
 
-    // Display the greeting message on the webpage
-    document.getElementById("greeting").innerText = greetingMessage;
-  </script>
+//     // Display the greeting message on the webpage
+//     document.getElementById("greeting").innerText = greetingMessage;
+
+let name = prompt("What is your name?");
+let age = prompt("How old are you?");
+let greetingMessage = "Hello, my name is " + name + " and I am " + age + " years old.";
+document.getElementById("greeting").innerText = greetingMessage;
+
+ </script>
 </body>
 </html>
