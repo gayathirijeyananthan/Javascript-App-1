@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Checker - Voting Eligibility</title>
+</head>
+<body>
+  <h1>Age Checker</h1>
+  
+  <!-- Form to input birth year -->
+  <form id="ageForm">
+    <label for="birthYear">Enter your birth year:</label>
+    <input type="number" id="birthYear" name="birthYear" required>
+    <button type="submit">Check Eligibility</button>
+  </form>
+  
+  <p id="eligibility"></p>  <!-- This will display the eligibility message -->
+
+  <script>
+    // Select form and message paragraph elements
+    const ageForm = document.getElementById('ageForm');
+    const eligibilityMessage = document.getElementById('eligibility');
+
+    // Event listener for form submission
+    ageForm.addEventListener('submit', function(event) {
+      event.preventDefault();  // Prevent the form from reloading the page
+      
+      // Get the user's input (birth year) from the form
+      const birthYear = parseInt(document.getElementById('birthYear').value);
+      
+      // Get the current year
+      const currentYear = new Date().getFullYear();
+      
+      // Calculate the age
+      const age = currentYear - birthYear;
+      
+      // Check eligibility for voting
+      let message;
+      if (age >= 18) {
+        message = "You are " + age + " years old. You are eligible to vote!";
+      } else {
+        message = "You are " + age + " years old. You are not eligible to vote yet.";
+      }
+      
+      // Display the eligibility message
+      eligibilityMessage.innerText = message;
+    });
+  </script>
+</body>
+</html>
